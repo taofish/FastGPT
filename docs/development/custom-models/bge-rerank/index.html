@@ -39,11 +39,11 @@ requirements.txt</code>
   </pre></div><p><strong>运行命令示例</strong></p><div class=prism-codeblock><pre id=655adcb class=language-sh>
   <code># auth token 为mytoken
 docker run -d --name reranker -p 6006:6006 -e ACCESS_TOKEN=mytoken --gpus all registry.cn-hangzhou.aliyuncs.com/fastgpt/bge-rerank-base:v0.1</code>
-  </pre></div><p><strong>docker-compose.yml示例</strong></p><div class=prism-codeblock><pre id=56db5ee class=language->
+  </pre></div><p><strong>docker-compose.yml示例</strong></p><div class=prism-codeblock><pre id=1504aba class=language->
   <code>version: &#34;3&#34;
 services:
   reranker:
-    image: registry.cn-hangzhou.aliyuncs.com/fastgpt/rerank:v0.2
+    image: registry.cn-hangzhou.aliyuncs.com/fastgpt/bge-rerank-base:v0.1
     container_name: reranker
     # GPU运行环境，如果宿主机未安装，将deploy配置隐藏即可
     deploy:

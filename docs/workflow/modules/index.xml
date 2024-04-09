@@ -26,7 +26,6 @@ key value appId {{appId}} Authorization Bearer {{token}} Body link只有特定�
 Laf 提供了 PAT(访问凭证) 来实现 Laf 平台外的快捷登录，可以访问 Laf 文档查看详细如何获取 PAT。
 在获取到 PAT 后，我们可以进入 FastGPT 的账号页或是在高级编排中的 Laf模块 对 Laf 账号进行绑定。Laf 账号是团队共享的，仅团队管理员可配置。
 填入 PAT 验证后，选择需要绑定的应用（应用需要是 Running 状态），即可调用该应用下的云函数。
-如果需要解绑则取消绑定后，点击“更新”即可
 编写云函数 linkLaf 云函数拥有根据 interface 自动生成 OpenAPI 的能力，可以参照下面的代码编写云函数，以便自动生成 OpenAPI 文档。
 Laf模块可以根据 OpenAPI 文档，自动识别出入参，无需手动添加数据类型。如果不会写 TS，可忽略，手动在 FastGPT 中添加参数即可。
 import cloud from &amp;#39;@lafjs/cloud&amp;#39; interface IRequestBody { // 自定义入参，FastGPT 传入的均为POST请求。 data1: string // 必填参数 data2?</description></item><item><title>对话入口</title><link>/docs/workflow/modules/input/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/input/</guid><description>特点 link 可重复添加（防止复杂编排时线太乱，重复添加可以更美观） 无外部输入 流程入口 自动执行</description></item><item><title>工具调用</title><link>/docs/workflow/modules/tool/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/tool/</guid><description> 什么是工具 link工具可以是一个系统模块，例如：AI对话、知识库搜索、HTTP模块等。也可以是一个插件。
