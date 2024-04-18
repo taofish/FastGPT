@@ -32,7 +32,19 @@ AI 对话消息组成 link想使用明白这两个变量，首先要了解传递
 Tips: 可以通过点击上下文按键查看完整的上下文组成，便于调试。
 引用模板和提示词设计 link引用模板和引用提示词通常是成对出现，引用提示词依赖引用模板。
 FastGPT 知识库采用 QA 对(不一定都是问答格式，仅代表两个变量)的格式存储，在转义成字符串时候会根据引用模板来进行格式化。知识库包含多个可用变量： q, a, sourceId（数据的ID）, index(第n个数据), source(数据的集合名、文件名)，score(距离得分，0-1) 可以通过 {{q}} {{a}} {{sourceId}} {{index}} {{source}} {{score}} 按需引入。下面一个模板例子：
-可以通过 知识库结构讲解 了解详细的知识库的结构。</description></item><item><title>知识库搜索方案和参数</title><link>/docs/course/dataset_engine/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/dataset_engine/</guid><description>理解向量 linkFastGPT 采用了 RAG 中的 Embedding 方案构建知识库，要使用好 FastGPT 需要简单的理解Embedding向量是如何工作的及其特点。
+可以通过 知识库结构讲解 了解详细的知识库的结构。</description></item><item><title>Web 站点同步</title><link>/docs/course/websync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/websync/</guid><description>该功能目前仅向商业版用户开放。
+什么是 Web 站点同步 linkWeb 站点同步利用爬虫的技术，可以通过一个入口网站，自动捕获同域名下的所有网站，目前最多支持200个子页面。出于合规与安全角度，FastGPT 仅支持静态站点的爬取，主要用于各个文档站点快速构建知识库。
+Tips: 国内的媒体站点基本不可用，公众号、csdn、知乎等。可以通过终端发送curl请求检测是否为静态站点，例如：
+curl https://doc.fastgpt.in/docs/intro/ 如何使用 link1. 新建知识库，选择 Web 站点同步 link 2. 点击配置站点信息 link 3. 填写网址和选择器 link 好了， 现在点击开始同步，静等系统自动抓取网站信息即可。
+创建应用，绑定知识库 link 选择器如何使用 link选择器是 HTML CSS JS 的产物，你可以通过选择器来定位到你需要抓取的具体内容，而不是整个站点。使用方式为：
+首先打开浏览器调试面板（通常是 F12，或者【右键 - 检查】） link 输入对应元素的选择器 link菜鸟教程 css 选择器，具体选择器的使用方式可以参考菜鸟教程。
+上图中，我们选中了一个区域，对应的是div标签，它有 data-prismjs-copy, data-prismjs-copy-success, data-prismjs-copy-error 三个属性，这里我们用到一个就够。所以选择器是： div[data-prismjs-copy]
+除了属性选择器，常见的还有类和ID选择器。例如：
+上图 class 里的是类名（可能包含多个类名，都是空格隔开的，选择一个即可），选择器可以为：.docs-content
+多选择器使用 link在开头的演示中，我们对 FastGPT 文档是使用了多选择器的方式来选择，通过逗号隔开了两个选择器。
+我们希望选中上图两个标签中的内容，此时就需要两组选择器。一组是：.docs-content .mb-0.d-flex，含义是 docs-content 类下同时包含 mb-0和d-flex 两个类的子元素；
+另一组是.docs-content div[data-prismjs-copy]，含义是docs-content 类下包含data-prismjs-copy属性的div元素。
+把两组选择器用逗号隔开即可：.docs-content .mb-0.d-flex, .docs-content div[data-prismjs-copy]</description></item><item><title>知识库搜索方案和参数</title><link>/docs/course/dataset_engine/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/dataset_engine/</guid><description>理解向量 linkFastGPT 采用了 RAG 中的 Embedding 方案构建知识库，要使用好 FastGPT 需要简单的理解Embedding向量是如何工作的及其特点。
 人类的文字、图片、视频等媒介是无法直接被计算机理解的，要想让计算机理解两段文字是否有相似性、相关性，通常需要将它们转成计算机可以理解的语言，向量是其中的一种方式。
 向量可以简单理解为一个数字数组，两个向量之间可以通过数学公式得出一个距离，距离越小代表两个向量的相似度越大。从而映射到文字、图片、视频等媒介上，可以用来判断两个媒介之间的相似度。向量搜索便是利用了这个原理。
 而由于文字是有多种类型，并且拥有成千上万种组合方式，因此在转成向量进行相似度匹配时，很难保障其精确性。在向量方案构建的知识库中，通常使用topk召回的方式，也就是查找前k个最相似的内容，丢给大模型去做更进一步的语义判断、逻辑推理和归纳总结，从而实现知识库问答。因此，在知识库问答中，向量搜索的环节是最为重要的。
