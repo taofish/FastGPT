@@ -14,7 +14,7 @@ sealos 中可以从上图左侧的环境变量中获取。
 curl --location --request POST &amp;#39;https://{{host}}/api/admin/initv481&amp;#39; \ --header &amp;#39;rootkey: {{rootkey}}&amp;#39; \ --header &amp;#39;Content-Type: application/json&amp;#39; 由于之前集合名不规范，该初始化会重置表名。请在初始化前，确保 dataset.trainings 表没有数据。 最好更新该版本时，暂停所有进行中业务，再进行初始化，避免数据冲突。
 执行脏数据清理 link从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT的域名。
 curl --location --request POST &amp;#39;https://{{host}}/api/admin/clearInvalidData&amp;#39; \ --header &amp;#39;rootkey: {{rootkey}}&amp;#39; \ --header &amp;#39;Content-Type: application/json&amp;#39; 初始化完后，可以执行这个命令。之前定时清理的定时器有些问题，部分数据没被清理，可以手动执行清理。
-V4.8.1 更新说明 link 新增 - 知识库重新选择向量模型重建 修复 - 工作流删除节点的动态输入和输出时候，没有正确的删除连接线，导致可能出现逻辑异常。 修复 - 定时器清理脏数据任务</description></item><item><title>V4.8</title><link>/docs/development/upgrading/48/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/development/upgrading/48/</guid><description>新工作流 linkFastGPT workflow V2上线，支持更加简洁的工作流模式。
+V4.8.1 更新说明 link 新增 - 知识库重新选择向量模型重建 新增 - 工作流节点版本变更提示，并可以同步最新版本。 优化 - 插件输入的 debug 模式，支持全量参数输入渲染。 修复 - 插件输入默认值被清空问题。 修复 - 工作流删除节点的动态输入和输出时候，没有正确的删除连接线，导致可能出现逻辑异常。 修复 - 定时器清理脏数据任务</description></item><item><title>V4.8</title><link>/docs/development/upgrading/48/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/development/upgrading/48/</guid><description>新工作流 linkFastGPT workflow V2上线，支持更加简洁的工作流模式。
 🤖
 由于工作流差异较大，不少地方需要手动重新构建。请依次重建插件和应用
 简易尽快更新工作流，避免未来持续迭代后导致无法兼容。
