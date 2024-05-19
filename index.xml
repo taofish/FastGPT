@@ -86,7 +86,13 @@ AI模型、提示词、聊天记录、用户问题，知识库引用为输入，
 FastGPT工作流中的线有以下几种状态：
 waiting：被连接的节点等待执行。 active：被连接的节点可以执行。 skip：被连接的节点不需要执行跳过。 节点执行的原则：
 判断前置线中有没有状态为 waiting 的，如果有则等待。 判断前置线中状态有没有状态为 active 如果有则执行。 如果前置线中状态即没有 waiting 也没有 active 则认为此节点需要跳过。 节点执行完毕后，需要根据实际情况更改后置线的状态为active或skip并且更改前置线状态为waiting等待下一轮执行。 让我们看一下上面例子的执行过程：
-【流程开始】节点执行完毕，更改后置线为active。 【知识库搜索】节点判断前置线状态为active开始执行，执行完毕后更改后置线状态为active 前置线状态为waiting。 【AI对话】节点判断前置线状态为active开始执行，流程执行结束。 如何连接节点 link 为了方便连接，FastGPT 每个节点的上下左右都有连接点，左和上是前置线连接点，右和下是后置线连接点。 可以点击连接线中间的 x 来删除连接线。 可以左键点击选中连接线 如何阅读？ link 建议从左往右阅读。 从 用户问题 节点开始。用户问题节点，代表的是用户发送了一段文本，触发任务开始。 关注【AI 对话】和【指定回复】节点，这两个节点是输出答案的地方。 FAQ link想合并多个输出结果怎么实现？ link 文本加工，可以对字符串进行合并。 知识库搜索合并，可以合并多个知识库搜索结果 其他结果，无法直接合并，可以考虑传入到HTTP节点中进行合并，使用[Laf](https://laf.</description></item><item><title>AI 对话</title><link>/docs/workflow/modules/ai_chat/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/ai_chat/</guid><description>特点 link 可重复添加 触发执行 核心模块 参数说明 linkAI模型 link可以通过 config.json 配置可选的对话模型，通过 one-api 来实现多模型接入。
+【流程开始】节点执行完毕，更改后置线为active。 【知识库搜索】节点判断前置线状态为active开始执行，执行完毕后更改后置线状态为active 前置线状态为waiting。 【AI对话】节点判断前置线状态为active开始执行，流程执行结束。 如何连接节点 link 为了方便连接，FastGPT 每个节点的上下左右都有连接点，左和上是前置线连接点，右和下是后置线连接点。 可以点击连接线中间的 x 来删除连接线。 可以左键点击选中连接线 如何阅读？ link 建议从左往右阅读。 从 用户问题 节点开始。用户问题节点，代表的是用户发送了一段文本，触发任务开始。 关注【AI 对话】和【指定回复】节点，这两个节点是输出答案的地方。 FAQ link想合并多个输出结果怎么实现？ link 文本加工，可以对字符串进行合并。 知识库搜索合并，可以合并多个知识库搜索结果 其他结果，无法直接合并，可以考虑传入到HTTP节点中进行合并，使用[Laf](https://laf.</description></item><item><title>自定义词库地址</title><link>/docs/course/custom_link/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/custom_link/</guid><description>什么是输入提示 link可自定义开启或关闭，当输入提示开启，并且词库中存在数据时，用户在输入问题时如果输入命中词库，那么会在输入框上方展示对应的智能推荐数据
+用户可配置词库，选择存储在 FastGPT 数据库中，或者提供自定义接口获取词库
+数据格式 link词库的形式为一个字符串数组，定义的词库接口应该有两种方法 —— GET &amp;amp; POST
+GET link对于 GET 方法，用于获取词库数据，FastGPT 会给接口发送数据 query 为
+{ appId: &amp;#39;xxxx&amp;#39; } 返回数据格式应当为
+{ data: [&amp;#39;xxx&amp;#39;, &amp;#39;xxxx&amp;#39;] } POST link对于 POST 方法，用于更新词库数据，FastGPT 会给接口发送数据 body 为
+{ appId: &amp;#39;xxxx&amp;#39;, text: [&amp;#39;xxx&amp;#39;, &amp;#39;xxxx&amp;#39;] } 接口应当按照获取的数据格式存储相对应的词库数组</description></item><item><title>AI 对话</title><link>/docs/workflow/modules/ai_chat/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/ai_chat/</guid><description>特点 link 可重复添加 触发执行 核心模块 参数说明 linkAI模型 link可以通过 config.json 配置可选的对话模型，通过 one-api 来实现多模型接入。
 点击AI模型后，可以配置模型的相关参数。
 🍅
 具体配置参数介绍可以参考: AI参数配置说明</description></item><item><title>内容提取</title><link>/docs/workflow/modules/content_extract/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/content_extract/</guid><description>特点 link 可重复添加 需要手动配置 触发执行 function_call 模块 核心模块 功能 link从文本中提取结构化数据，通常是配合 HTTP 模块实现扩展。也可以做一些直接提取操作，例如：翻译。
