@@ -88,7 +88,8 @@ waiting：被连接的节点等待执行。 active：被连接的节点可以执
 判断前置线中有没有状态为 waiting 的，如果有则等待。 判断前置线中状态有没有状态为 active 如果有则执行。 如果前置线中状态即没有 waiting 也没有 active 则认为此节点需要跳过。 节点执行完毕后，需要根据实际情况更改后置线的状态为active或skip并且更改前置线状态为waiting等待下一轮执行。 让我们看一下上面例子的执行过程：
 【流程开始】节点执行完毕，更改后置线为active。 【知识库搜索】节点判断前置线状态为active开始执行，执行完毕后更改后置线状态为active 前置线状态为waiting。 【AI对话】节点判断前置线状态为active开始执行，流程执行结束。 如何连接节点 link 为了方便连接，FastGPT 每个节点的上下左右都有连接点，左和上是前置线连接点，右和下是后置线连接点。 可以点击连接线中间的 x 来删除连接线。 可以左键点击选中连接线 如何阅读？ link 建议从左往右阅读。 从 用户问题 节点开始。用户问题节点，代表的是用户发送了一段文本，触发任务开始。 关注【AI 对话】和【指定回复】节点，这两个节点是输出答案的地方。 FAQ link想合并多个输出结果怎么实现？ link 文本加工，可以对字符串进行合并。 知识库搜索合并，可以合并多个知识库搜索结果 其他结果，无法直接合并，可以考虑传入到HTTP节点中进行合并，使用[Laf](https://laf.</description></item><item><title>对话问题引导</title><link>/docs/course/chat_input_guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/chat_input_guide/</guid><description> 什么是自定义问题引导 link你可以为你的应用提前预设一些问题，用户在输入时，会根据输入的内容，动态搜索这些问题作为提示，从而引导用户更快的进行提问。
 你可以直接在 FastGPT 中配置词库，或者提供自定义词库接口。
-自定义词库接口 link请求：
+自定义词库接口 link需要保证这个接口可以被用户浏览器访问。
+请求：
 curl --location --request GET &amp;#39;http://localhost:3000/api/core/chat/inputGuide/query?appId=663c75302caf8315b1c00194&amp;amp;searchKey=你&amp;#39; 响应
 { &amp;#34;code&amp;#34;: 200, &amp;#34;statusText&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;data&amp;#34;: [ &amp;#34;是你&amp;#34;, &amp;#34;你是谁呀&amp;#34;, &amp;#34;你好好呀&amp;#34;, &amp;#34;你好呀&amp;#34;, &amp;#34;你是谁！&amp;#34;, &amp;#34;你好&amp;#34; ] } 参数说明：
 appId - 应用ID searchKey - 搜索关键字</description></item><item><title>AI 对话</title><link>/docs/workflow/modules/ai_chat/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/ai_chat/</guid><description>特点 link 可重复添加 触发执行 核心模块 参数说明 linkAI模型 link可以通过 config.json 配置可选的对话模型，通过 one-api 来实现多模型接入。

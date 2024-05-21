@@ -65,7 +65,8 @@ FastGPT 知识库完整逻辑 link在正式构建知识库前，我们先来了�
 与大部分其他知识库问答产品不一样的是， FastGPT 采用了 QA 问答对进行存储，而不是仅进行 chunk（文本分块）处理。目的是为了减少向量化内容的长度，让向量能更好的表达文本的含义，从而提高搜索精准度。 此外 FastGPT 还提供了搜索测试和对话测试两种途径对数据进行调整，从而方便用户调整自己的数据。根据上述流程和方式，我们以构建一个 FastGPT 常见问题机器人为例，展示如何构建一个高质量的 AI 知识库。
 构建知识库应用 link首先，先创建一个 FastGPT 常见问题知识库</description></item><item><title>对话问题引导</title><link>/docs/course/chat_input_guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/chat_input_guide/</guid><description> 什么是自定义问题引导 link你可以为你的应用提前预设一些问题，用户在输入时，会根据输入的内容，动态搜索这些问题作为提示，从而引导用户更快的进行提问。
 你可以直接在 FastGPT 中配置词库，或者提供自定义词库接口。
-自定义词库接口 link请求：
+自定义词库接口 link需要保证这个接口可以被用户浏览器访问。
+请求：
 curl --location --request GET &amp;#39;http://localhost:3000/api/core/chat/inputGuide/query?appId=663c75302caf8315b1c00194&amp;amp;searchKey=你&amp;#39; 响应
 { &amp;#34;code&amp;#34;: 200, &amp;#34;statusText&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;data&amp;#34;: [ &amp;#34;是你&amp;#34;, &amp;#34;你是谁呀&amp;#34;, &amp;#34;你好好呀&amp;#34;, &amp;#34;你好呀&amp;#34;, &amp;#34;你是谁！&amp;#34;, &amp;#34;你好&amp;#34; ] } 参数说明：
 appId - 应用ID searchKey - 搜索关键字</description></item></channel></rss>
