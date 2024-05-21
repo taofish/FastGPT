@@ -63,10 +63,9 @@ FastGPT 会使用 RRF 对重排结果、向量搜索结果、全文检索结果�
 FastGPT 知识库完整逻辑 link在正式构建知识库前，我们先来了解下 FastGPT 是如何进行知识库检索的。首先了解几个基本概念：
 向量：将人类直观的语言（文字、图片、视频等）转成计算机可识别的语言（数组）。 向量相似度：两个向量之间可以进行计算，得到一个相似度，即代表：两个语言相似的程度。 语言大模型的一些特点：上下文理解、总结和推理。 结合上述 3 个概念，便有了 “向量搜索 + 大模型 = 知识库问答” 的公式。下图是 FastGPT V3 中知识库问答功能的完整逻辑：
 与大部分其他知识库问答产品不一样的是， FastGPT 采用了 QA 问答对进行存储，而不是仅进行 chunk（文本分块）处理。目的是为了减少向量化内容的长度，让向量能更好的表达文本的含义，从而提高搜索精准度。 此外 FastGPT 还提供了搜索测试和对话测试两种途径对数据进行调整，从而方便用户调整自己的数据。根据上述流程和方式，我们以构建一个 FastGPT 常见问题机器人为例，展示如何构建一个高质量的 AI 知识库。
-构建知识库应用 link首先，先创建一个 FastGPT 常见问题知识库</description></item><item><title>自定义词库地址</title><link>/docs/course/custom_link/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/custom_link/</guid><description>什么是输入提示 link可自定义开启或关闭，当输入提示开启，并且词库中存在数据时，用户在输入问题时如果输入命中词库，那么会在输入框上方展示对应的智能推荐数据
-用户可配置词库，选择存储在 FastGPT 数据库中，或者提供自定义接口获取词库
-数据格式 link词库的形式为一个字符串数组，定义的词库接口应该有两种方法 —— GET &amp;amp; POST
-GET link对于 GET 方法，用于获取词库数据，FastGPT 会给接口发送数据 query 为
-{ appId: &amp;#39;xxxx&amp;#39; } 返回数据格式应当为
-{ data: [&amp;#39;xxx&amp;#39;, &amp;#39;xxxx&amp;#39;] } POST link对于 POST 方法，用于更新词库数据，FastGPT 会给接口发送数据 body 为
-{ appId: &amp;#39;xxxx&amp;#39;, text: [&amp;#39;xxx&amp;#39;, &amp;#39;xxxx&amp;#39;] } 接口应当按照获取的数据格式存储相对应的词库数组</description></item></channel></rss>
+构建知识库应用 link首先，先创建一个 FastGPT 常见问题知识库</description></item><item><title>对话问题引导</title><link>/docs/course/chat_input_guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/course/chat_input_guide/</guid><description> 什么是自定义问题引导 link你可以为你的应用提前预设一些问题，用户在输入时，会根据输入的内容，动态搜索这些问题作为提示，从而引导用户更快的进行提问。
+你可以直接在 FastGPT 中配置词库，或者提供自定义词库接口。
+自定义词库接口 link请求：
+curl --location --request GET &amp;#39;http://localhost:3000/api/core/chat/inputGuide/query?appId=663c75302caf8315b1c00194&amp;amp;searchKey=你&amp;#39; 响应
+{ &amp;#34;code&amp;#34;: 200, &amp;#34;statusText&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;data&amp;#34;: [ &amp;#34;是你&amp;#34;, &amp;#34;你是谁呀&amp;#34;, &amp;#34;你好好呀&amp;#34;, &amp;#34;你好呀&amp;#34;, &amp;#34;你是谁！&amp;#34;, &amp;#34;你好&amp;#34; ] } 参数说明：
+appId - 应用ID searchKey - 搜索关键字</description></item></channel></rss>
