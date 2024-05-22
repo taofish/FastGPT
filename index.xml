@@ -90,8 +90,10 @@ waiting：被连接的节点等待执行。 active：被连接的节点可以执
 你可以直接在 FastGPT 中配置词库，或者提供自定义词库接口。
 自定义词库接口 link需要保证这个接口可以被用户浏览器访问。
 请求：
-curl --location --request GET &amp;#39;http://localhost:3000/api/core/chat/inputGuide/query?appId=663c75302caf8315b1c00194&amp;amp;searchKey=你&amp;#39; 响应
-{ &amp;#34;code&amp;#34;: 200, &amp;#34;statusText&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;data&amp;#34;: [ &amp;#34;是你&amp;#34;, &amp;#34;你是谁呀&amp;#34;, &amp;#34;你好好呀&amp;#34;, &amp;#34;你好呀&amp;#34;, &amp;#34;你是谁！&amp;#34;, &amp;#34;你好&amp;#34; ] } 参数说明：
+curl --location --request GET &amp;#39;http://localhost:3000/api/core/chat/inputGuide/query?appId=663c75302caf8315b1c00194&amp;amp;searchKey=你&amp;#39; 其中 appId 为应用ID，searchKey 为搜索关键字，最多是50个字符。
+响应
+{ &amp;#34;code&amp;#34;: 200, &amp;#34;statusText&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;message&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;data&amp;#34;: [ &amp;#34;是你&amp;#34;, &amp;#34;你是谁呀&amp;#34;, &amp;#34;你好好呀&amp;#34;, &amp;#34;你好呀&amp;#34;, &amp;#34;你是谁！&amp;#34;, &amp;#34;你好&amp;#34; ] } data是一个数组，包含了搜索到的问题，最多只需要返回5个问题。
+参数说明：
 appId - 应用ID searchKey - 搜索关键字</description></item><item><title>AI 对话</title><link>/docs/workflow/modules/ai_chat/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/workflow/modules/ai_chat/</guid><description>特点 link 可重复添加 触发执行 核心模块 参数说明 linkAI模型 link可以通过 config.json 配置可选的对话模型，通过 one-api 来实现多模型接入。
 点击AI模型后，可以配置模型的相关参数。
 🍅
