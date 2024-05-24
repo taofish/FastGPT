@@ -10,7 +10,7 @@ QA link{{host}} 是什么 link{{}} 代表变量， {{host}}代表一个名为 ho
 Sealos 中，你可以在下图中找到你的域名：
 如何获取 rootkey link从docker-compose.yml中的environment中获取，对应的是ROOT_KEY的值。
 sealos 中可以从上图左侧的环境变量中获取。
-如何跨版本升级！！ link建议逐一版本升级，防止脏数据。例如，当前版本是4.</description></item><item><title>V4.8.1</title><link>/docs/development/upgrading/481/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/development/upgrading/481/</guid><description>初始化脚本 link从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT的域名。
+如何跨版本升级！！ link建议逐一版本升级，防止脏数据。例如，当前版本是4.</description></item><item><title>V4.8.1(需要初始化)</title><link>/docs/development/upgrading/481/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/development/upgrading/481/</guid><description>初始化脚本 link从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT的域名。
 curl --location --request POST &amp;#39;https://{{host}}/api/admin/initv481&amp;#39; \ --header &amp;#39;rootkey: {{rootkey}}&amp;#39; \ --header &amp;#39;Content-Type: application/json&amp;#39; 由于之前集合名不规范，该初始化会重置表名。请在初始化前，确保 dataset.trainings 表没有数据。 最好更新该版本时，暂停所有进行中业务，再进行初始化，避免数据冲突。
 执行脏数据清理 link从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT的域名。
 curl --location --request POST &amp;#39;https://{{host}}/api/admin/clearInvalidData&amp;#39; \ --header &amp;#39;rootkey: {{rootkey}}&amp;#39; \ --header &amp;#39;Content-Type: application/json&amp;#39; 初始化完后，可以执行这个命令。之前定时清理的定时器有些问题，部分数据没被清理，可以手动执行清理。
