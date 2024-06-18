@@ -30,12 +30,11 @@ ChatGPT Web 示例：</description></item><item><title>接入微信和企业微�
 继续往下看到 apikey 和服务器根地址，这里apikey填写我们在 FastGPT 应用外部访问中创建的 APIkey，服务器根地址填写官方地址或者私有化部署的地址，这里用官方地址示例，注意要添加/v1后缀,填写完毕后保存。
 sealos部署服务 link访问sealos 登陆进来之后打开「应用管理」-&amp;gt; 「新建应用」。
 应用名：称随便填写 镜像名：私人微信填写 aibotk/wechat-assistant 企业微信填写 aibotk/worker-assistant cpu和内存建议 1c1g 往下翻页找到「高级配置」-&amp;gt; 「编辑环境变量」
-这里需要填写四个环境变量：
-AIBOTK_KEY=微秘书 APIKEY AIBOTK_SECRET=微秘书 APISECRET WORK_PRO_TOKEN=你申请的企微 token （企业微信需要填写，私人微信不需要） 这里最后两个变量只有部署企业微信才需要，私人微信只需要填写前两个即可。
+这里需要填写三个环境变量：
+AIBOTK_KEY=微秘书 APIKEY AIBOTK_SECRET=微秘书 APISECRET WORK_PRO_TOKEN=你申请的企微 token （企业微信需要填写，私人微信不需要） 这里最后的企业微信 Token 在微秘书的-&amp;gt;会员开通栏目中自行购买。
 这里环境变量我们介绍下如何填写：
 AIBOTK_KEY 和 AIBOTK_SECRET 我们需要回到微秘书找到「个人中心」,这里的 APIKEY 对应 AIBOTK_KEY ，APISECRET 对应 AIBOTK_SECRET。
-WORK_PRO_TOKEN 点击这里申请 token 然后填入即可。
-WECHATY_PUPPET_SERVICE_AUTHORITY的值复制过去就可以。
+WORK_PRO_TOKEN 微秘书的会员中心中自行购买即可。
 填写完毕后点右上角「部署」，等待应用状态变为运行中。
 返回微秘书 找到「首页」，扫码登陆需要接入的微信号。
 测试 link只需要发送信息，或者拉入群聊@登陆的微信就会回复信息啦。</description></item></channel></rss>
