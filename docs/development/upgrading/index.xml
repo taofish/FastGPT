@@ -10,7 +10,7 @@ QA link{{host}} 是什么 link{{}} 代表变量， {{host}}代表一个名为 ho
 Sealos 中，你可以在下图中找到你的域名：
 如何获取 rootkey link从docker-compose.yml中的environment中获取，对应的是ROOT_KEY的值。
 sealos 中可以从上图左侧的环境变量中获取。
-如何跨版本升级！！ link建议逐一版本升级，防止脏数据。例如，当前版本是4.</description></item><item><title>V4.8.5</title><link>https://doc.fastgpt.in/docs/development/upgrading/485/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/development/upgrading/485/</guid><description>升级指南 link1. 做好数据库备份 link2. 修改镜像 link fastgpt 镜像 tag 修改成 v4.8.5 商业版镜像 tag 修改成 v4.8.5 3. 执行初始化 link从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT 域名。
+如何跨版本升级！！ link建议逐一版本升级，防止脏数据。例如，当前版本是4.</description></item><item><title>V4.8.5(需要初始化)</title><link>https://doc.fastgpt.in/docs/development/upgrading/485/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/development/upgrading/485/</guid><description>升级指南 link1. 做好数据库备份 link2. 修改镜像 link fastgpt 镜像 tag 修改成 v4.8.5 商业版镜像 tag 修改成 v4.8.5 3. 执行初始化 link从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT 域名。
 curl --location --request POST &amp;#39;https://{{host}}/api/admin/initv485&amp;#39; \ --header &amp;#39;rootkey: {{rootkey}}&amp;#39; \ --header &amp;#39;Content-Type: application/json&amp;#39; 会把插件的数据表合并到应用中，插件表不会删除。
 商业版用户执行额外的初始化
 从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 rootkey；{{host}} 替换成FastGPT 商业版的域名：
