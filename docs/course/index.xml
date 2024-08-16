@@ -20,9 +20,9 @@
 AI 对话消息组成 link想使用明白这两个变量，首先要了解传递传递给 AI 模型的消息格式。它是一个数组，FastGPT 中这个数组的组成形式为：
 [ 内置提示词（config.json 配置，一般为空） 系统提示词 （用户输入的提示词） 历史记录 问题（由引用提示词、引用模板和用户问题组成） ] 🍅
 Tips: 可以通过点击上下文按键查看完整的上下文组成，便于调试。
-引用模板和提示词设计 link引用模板和引用提示词通常是成对出现，引用提示词依赖引用模板。
-FastGPT 知识库采用 QA 对(不一定都是问答格式，仅代表两个变量)的格式存储，在转义成字符串时候会根据引用模板来进行格式化。知识库包含多个可用变量： q, a, sourceId（数据的ID）, index(第n个数据), source(数据的集合名、文件名)，score(距离得分，0-1) 可以通过 {{q}} {{a}} {{sourceId}} {{index}} {{source}} {{score}} 按需引入。下面一个模板例子：
-可以通过 知识库结构讲解 了解详细的知识库的结构。</description></item><item><title>Web 站点同步</title><link>https://doc.fastgpt.in/docs/course/websync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/course/websync/</guid><description>该功能目前仅向商业版用户开放。
+引用模板和提示词设计 link简易模式已移除该功能，仅在工作流中可配置，可点击工作流中AI对话节点内，知识库引用旁边的setting icon进行配置。随着模型的增强，这部分功能将逐步弱化。
+引用模板和引用提示词通常是成对出现，引用提示词依赖引用模板。
+FastGPT 知识库采用 QA 对(不一定都是问答格式，仅代表两个变量)的格式存储，在转义成字符串时候会根据引用模板来进行格式化。知识库包含多个可用变量： q, a, sourceId（数据的ID）, index(第n个数据), source(数据的集合名、文件名)，score(距离得分，0-1) 可以通过 {{q}} {{a}} {{sourceId}} {{index}} {{source}} {{score}} 按需引入。下面一个模板例子：</description></item><item><title>Web 站点同步</title><link>https://doc.fastgpt.in/docs/course/websync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/course/websync/</guid><description>该功能目前仅向商业版用户开放。
 什么是 Web 站点同步 linkWeb 站点同步利用爬虫的技术，可以通过一个入口网站，自动捕获同域名下的所有网站，目前最多支持200个子页面。出于合规与安全角度，FastGPT 仅支持静态站点的爬取，主要用于各个文档站点快速构建知识库。
 Tips: 国内的媒体站点基本不可用，公众号、csdn、知乎等。可以通过终端发送curl请求检测是否为静态站点，例如：
 curl https://doc.fastgpt.in/docs/intro/ 如何使用 link1. 新建知识库，选择 Web 站点同步 link 2. 点击配置站点信息 link 3. 填写网址和选择器 link 好了， 现在点击开始同步，静等系统自动抓取网站信息即可。
@@ -83,4 +83,20 @@ appId - 应用ID searchKey - 搜索关键字</description></item><item><title>�
 上传的文件如何存储在数据库中 linkFastGPT 的对话记录存储结构中，role=user 的消息，value 值会按以下结构存储：
 type UserChatItemValueItemType = { type: &amp;#39;text&amp;#39; | &amp;#39;file&amp;#39; text?: { content: string; }; file?: { type: &amp;#39;img&amp;#39; | &amp;#39;doc&amp;#39; name?: string; url: string; }; }; 也就是说，上传的图片和文档，都会以 URL 的形式存储在库中，并不会存储解析后的文档内容。
 图片如何处理 link文档解析节点不会处理图片，图片链接会被过滤，图片识别请直接使用支持图片识别的 LLM 模型。
-文档解析节点如何工作 link文档解析依赖文档解析节点，这个节点会接收一个array&amp;lt;string&amp;gt;类型的输入，对应的是文件输入的 URL；输出的是一个string，对应的是文档解析后的内容。</description></item></channel></rss>
+文档解析节点如何工作 link文档解析依赖文档解析节点，这个节点会接收一个array&amp;lt;string&amp;gt;类型的输入，对应的是文件输入的 URL；输出的是一个string，对应的是文档解析后的内容。</description></item><item><title>接入飞书机器人教程</title><link>https://doc.fastgpt.in/docs/course/feishu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/course/feishu/</guid><description>从 4.8.10 版本起，FastGPT 商业版支持直接接入飞书机器人，无需额外的 API。
+1. 申请飞书应用 link开一个免费的测试企业更方便进行调试。
+在飞书开放平台的开发者后台申请企业自建应用。 添加一个机器人应用。
+2. 在 FastGPT 新建发布渠道 link在fastgpt中选择想要接入的应用，在 发布渠道 页面，新建一个接入飞书机器人的发布渠道，填写好基础信息。
+3. 获取应用的 App ID, App Secret 两个凭证 link在飞书开放平台开发者后台，刚刚创建的企业自建应用中，找到 App ID 和 App Secret，填入 FastGPT 新建发布渠道的对话框里面。
+填入两个参数到 FastGPT 配置弹窗中。
+（可选）在飞书开放平台开发者后台，点击事件与回调 -&amp;gt; 加密策略 获取 Encrypt Key，并填入飞书机器人接入的对话框里面
+Encrypt Key 用于加密飞书服务器与 FastGPT 之间通信。 建议如果使用 Https 协议，则不需要 Encrypt Key。如果使用 Http 协议通信，则建议使用 Encrypt Key Verification Token 默认生成的这个 Token 用于校验来源。但我们使用飞书官方推荐的另一种更为安全的校验方式，因此可以忽略这个配置项。
+4. 配置回调地址 link新建好发布渠道后，点击请求地址，复制对应的请求地址。
+在飞书控制台，点击左侧的 事件与回调 ，点击配置订阅方式旁边的编辑 icon，粘贴刚刚复制的请求地址到输入框中。
+5. 配置机器人回调事件和权限 link 添加 接收消息 事件 在事件与回调页面，点击添加事件。</description></item><item><title>通过 API 访问应用</title><link>https://doc.fastgpt.in/docs/course/openapi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/course/openapi/</guid><description>在 FastGPT 中，你可以为每一个应用创建多个 API 密钥，用于访问应用的 API 接口。每个密钥仅能访问一个应用。完整的接口可以查看应用对话接口。
+获取 API 秘钥 link依次选择应用 -&amp;gt; 「API访问」，然后点击「API 密钥」来创建密钥。
+warning 密钥需要自己保管好，一旦关闭就无法再复制密钥，只能创建新密钥再复制。
+🍅
+Tips: 安全起见，你可以设置一个额度或者过期时间，放置 key 被滥用。
+替换三方应用的变量 link OPENAI_API_BASE_URL: https://api.fastgpt.in/api (改成自己部署的域名) OPENAI_API_KEY = 上一步获取到的秘钥 ChatGPT Next Web 示例：
+ChatGPT Web 示例：</description></item></channel></rss>
