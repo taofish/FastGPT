@@ -30,7 +30,7 @@ AIBOTK_KEY 和 AIBOTK_SECRET 我们需要回到微秘书找到「个人中心」
 WORK_PRO_TOKEN 微秘书的会员中心中自行购买即可。
 填写完毕后点右上角「部署」，等待应用状态变为运行中。
 返回微秘书 找到「首页」，扫码登陆需要接入的微信号。
-测试 link只需要发送信息，或者拉入群聊@登陆的微信就会回复信息啦。</description></item><item><title>教程 - 接入飞书机器人</title><link>https://doc.fastgpt.in/docs/use-cases/feishu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/use-cases/feishu/</guid><description>1. 申请飞书应用 link开一个免费的测试企业更方便进行调试。
+测试 link只需要发送信息，或者拉入群聊@登陆的微信就会回复信息啦。</description></item><item><title>接入飞书机器人教程</title><link>https://doc.fastgpt.in/docs/use-cases/feishu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.fastgpt.in/docs/use-cases/feishu/</guid><description>1. 申请飞书应用 link开一个免费的测试企业更方便进行调试。
 在飞书开放平台的开发者后台申请企业自建应用。 添加一个机器人应用。
 2. 在 FastGPT 新建发布渠道 link在fastgpt中选择想要接入的应用，在 发布渠道 页面，新建一个接入飞书机器人的发布渠道，填写好基础信息。
 3. 获取应用的 App ID, App Secret 两个凭证 link在飞书开放平台开发者后台，刚刚创建的企业自建应用中，找到 App ID 和 App Secret，填入 FastGPT 新建发布渠道的对话框里面。
